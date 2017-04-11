@@ -1,0 +1,21 @@
+﻿
+namespace AdminIPBG.Clients {
+    export interface ClientsRow {
+        ClientsId?: number;
+        Name?: string;
+    }
+
+    export namespace ClientsRow {
+        export const idProperty = 'ClientsId';
+        export const nameProperty = 'Name';
+        export const localTextPrefix = 'Clients.Clients';
+
+        export namespace Fields {
+            export declare const ClientsId;
+            export declare const Name;
+        }
+
+        ['ClientsId', 'Name'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+
