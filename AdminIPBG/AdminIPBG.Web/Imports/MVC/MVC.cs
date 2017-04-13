@@ -430,6 +430,12 @@ namespace MVC
             public const string Error = "~/Views/Shared/Error.cshtml";
             public const string LeftNavigation = "~/Views/Shared/LeftNavigation.cshtml";
         }
+
+        public static class Rows
+        {
+            public const string RowsInvoice = "~/Modules/Rows/Rows/RowsInvoice.cshtml";
+
+        }
     }
 }
 

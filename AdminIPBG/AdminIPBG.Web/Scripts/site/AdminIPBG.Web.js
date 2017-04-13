@@ -3764,6 +3764,55 @@ var AdminIPBG;
             RowsGrid.prototype.getIdProperty = function () { return Rows.RowsRow.idProperty; };
             RowsGrid.prototype.getLocalTextPrefix = function () { return Rows.RowsRow.localTextPrefix; };
             RowsGrid.prototype.getService = function () { return Rows.RowsService.baseUrl; };
+            RowsGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.splice(1, 0, {
+                    field: 'Print Invoice',
+                    name: 'Протокол',
+                    format: function (ctx) { return '<a class="inline-action print-invoice" title="Протокол">' +
+                        '<i class="fa fa-file-pdf-o text-red"></i> Изтегли</a>'; },
+                    width: 76,
+                    minWidth: 54,
+                    maxWidth: 76
+                });
+                return columns;
+            };
+            RowsGrid.prototype.onClick = function (e, row, cell) {
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('print-invoice')) {
+                        AdminIPBG.Common.ReportHelper.execute({
+                            reportKey: 'Rows.RowsInvoice',
+                            params: {
+                                RowId: item.RowId
+                            }
+                        });
+                    }
+                }
+            };
+            RowsGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(AdminIPBG.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    service: Rows.RowsService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
+                buttons.push(AdminIPBG.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                return buttons;
+            };
             return RowsGrid;
         }(Serenity.EntityGrid));
         RowsGrid = __decorate([

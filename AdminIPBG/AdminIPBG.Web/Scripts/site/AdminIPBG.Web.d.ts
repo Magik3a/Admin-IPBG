@@ -1761,5 +1761,8 @@ declare namespace AdminIPBG.Rows {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+        protected getButtons(): Serenity.ToolButton[];
     }
 }

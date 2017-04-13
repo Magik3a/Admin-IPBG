@@ -1,4 +1,8 @@
 ﻿
+using System;
+using Serenity.Reporting;
+using Serenity.Web;
+
 namespace AdminIPBG.Rows.Endpoints
 {
     using Serenity;
@@ -39,6 +43,15 @@ namespace AdminIPBG.Rows.Endpoints
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
+        }
+
+        public FileContentResult ListExcel(IDbConnection connection, ListRequest request)
+        {
+            var data = List(connection, request).Entities;
+            var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.RowsColumns));
+            var bytes = new ReportRepository().Render(report);
+            var reportName = "xyzList_";
+            return ExcelContentResult.Create(bytes, reportName + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
         }
     }
 }

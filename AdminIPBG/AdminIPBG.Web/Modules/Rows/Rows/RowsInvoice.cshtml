@@ -1,0 +1,64 @@
+﻿@model AdminIPBG.Rows.RowsInvoiceData
+
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+
+<section class="invoice">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/Content/site/images/InvoiceHeaderPdf.png" class="img img-responsive" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>
+                ПРИЕМО - ПРЕДАВАТЕЛЕН
+                <br/>
+                ПРОТОКОЛ
+            </h2>
+        </div>
+    </div>
+    <table style="margin-top: 50px">
+        <tr>
+            <td style="vertical-align: top">ОБЕКТ:</td>
+            <td style="width: 85%">"БЕНЗИНОСТАНЦИЯ, ГАЗСТАНЦИЯ, ТЪРГОВСКА СГРАДА С МАГАЗИН        И СНЕК-БАР" в УПИ 223.192 – производствено – складова, търговска и                обществено обслужваща  дейност – бензиностанция, газстанция, магазин с                кафе и офис, землище на с.Труд,  Община Марица, Област Пловдив</td>
+        </tr>
+        
+        <tr style="height: 60px;">
+            <td style="">ЧАСТ:</td>
+            <td>@Model.Part</td>
+        </tr>
+        <tr style="height: 60px;">
+            <td style="">ФАЗА:</td>
+            <td>@Model.Phase</td>
+        </tr>
+        <tr style="height: 60px;">
+            <td style="">ВЪЗЛОЖИТЕЛ:</td>
+            <td>@Model.Client</td>
+        </tr>
+        <tr style="height: 60px;">
+            <td class="text-center" colspan="2">
+                Днес, 13.04.2017 г. получих 1 брой проект, х4 броя папки, общо 4 бр. папки
+            </td>
+        </tr>
+    </table>
+    
+    <div class="row" style="margin-top: 50px;">
+        <p class="text-right">
+            Предал: .......................................
+            <br/>
+            /Иванка Шопова /
+        </p>
+    </div>
+    
+    <div class="row" style="margin-top: 50px;">
+        <p class="text-right">
+            Приел: .........................................
+            <br/>
+            / арх. Примов /
+
+        </p>
+    </div>
+</section>
