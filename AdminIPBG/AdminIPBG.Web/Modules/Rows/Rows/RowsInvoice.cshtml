@@ -7,8 +7,11 @@
 
 <section class="invoice">
     <div class="row">
-        <div class="col-md-12">
-            <img src="~/Content/site/images/InvoiceHeaderPdf.png" class="img img-responsive" />
+        <div class="col-md-2" style="width: 20%; display: inline-block">
+            <img src="data:image/png;base64,@Model.QrCodeBase64" class="img img-responsive"/>
+        </div>
+        <div class="col-md-10" style="width: 70%; display: inline-block">
+            <img src="~/Content/site/images/InvoiceHeaderPdf.png" class="img img-responsive"/>
         </div>
     </div>
     <div class="row">

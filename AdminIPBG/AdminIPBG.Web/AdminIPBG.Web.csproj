@@ -81,6 +81,9 @@
     <Reference Include="NUglify, Version=1.5.4.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUglify.1.5.4\lib\net40\NUglify.dll</HintPath>
     </Reference>
+    <Reference Include="QRCoder, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\QRCoder.1.2.6\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="Serenity.Core, Version=2.9.21.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Serenity.Core.2.9.21\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
@@ -134,6 +137,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\QRCoder.1.2.6\lib\net40\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe">
@@ -1692,6 +1698,7 @@
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
     <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <Compile Include="tools\Utils\QRCodeGeneratorExtend.cs" />
     <Content Include="Modules\Common\Reporting\ReportPage.cshtml" />
     <Compile Include="Modules\Common\Reporting\ReportTree.cs" />
     <Compile Include="Modules\Common\Reporting\ReportController.cs" />

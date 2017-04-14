@@ -1,5 +1,9 @@
 ﻿
 
+using System.Drawing;
+using AdminIPBG.tools.Utils;
+using QRCoder;
+
 namespace AdminIPBG.Rows.Repositories
 {
     using Serenity;
@@ -15,13 +19,22 @@ namespace AdminIPBG.Rows.Repositories
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            request.Entity.InvoiceCode = $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
+            var invoiceCode =
+            $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
+            request.Entity.InvoiceCode = invoiceCode;
+            request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
+
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
 
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            request.Entity.InvoiceCode = $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
+            var invoiceCode =
+             $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
+            request.Entity.InvoiceCode = invoiceCode;
+
+            // TODO Check if changed 
+            request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
 

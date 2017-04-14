@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing.Printing;
+
 namespace AdminIPBG.Rows.Entities
 {
     using Serenity;
@@ -27,7 +29,7 @@ namespace AdminIPBG.Rows.Entities
         [DisplayName("Client"), NotNull, ForeignKey("[dbo].[Clients]", "ClientsId"), LeftJoin("jClient"), TextualField("ClientName")]
         [LookupEditor(typeof(Rows.Entities.ClientsRow), InplaceAdd = true)]
         public Int32? ClientId { get { return Fields.ClientId[this]; } set { Fields.ClientId[this] = value; } }
-        
+
 
         public partial class RowFields { public Int32Field ClientId; }
         #endregion ClientId
@@ -64,7 +66,7 @@ namespace AdminIPBG.Rows.Entities
         #endregion ProjectorId
 
         #region Date
-        [DisplayName("Date"), NotNull]
+        [DisplayName("Date"), NotNull, QuickFilter]
         public DateTime? Date { get { return Fields.Date[this]; } set { Fields.Date[this] = value; } }
         public partial class RowFields { public DateTimeField Date; }
         #endregion Date
@@ -77,7 +79,7 @@ namespace AdminIPBG.Rows.Entities
             set { Fields.InvoiceCode[this] = value; }
         }
         public partial class RowFields { public StringField InvoiceCode; }
-        
+
         #endregion
         #region Part
         [DisplayName("Part"), NotNull, ForeignKey("[dbo].[Parts]", "PartId"), LeftJoin("jPart"), TextualField("PartName")]
@@ -114,6 +116,19 @@ namespace AdminIPBG.Rows.Entities
         }
         public partial class RowFields { public StringField PersonTook; }
         #endregion
+
+        #region QRCode
+
+        public Byte[] QrCodeInvoice
+        {
+            get { return Fields.QrCodeInvoice[this]; }
+            set { Fields.QrCodeInvoice[this] = value; }
+        }
+
+        public partial class RowFields { public ByteArrayField QrCodeInvoice; }
+
+        #endregion
+
         #region Foreign Fields
 
         [DisplayName("Client Name"), Expression("jClient.[Name]")]

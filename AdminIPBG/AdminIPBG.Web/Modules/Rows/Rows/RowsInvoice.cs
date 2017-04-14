@@ -32,6 +32,8 @@ namespace AdminIPBG.Rows
                 data.InvoiceDate = row.Date??DateTime.Now;
                 data.InvoiceCode = row.InvoiceCode;
                 data.UserGive = row.PersonDelivered;
+                data.QrCodeBase64 = Convert.ToBase64String(row.QrCodeInvoice, 0, row.QrCodeInvoice.Length);
+
                 data.UserTake = row.PersonTook;
             }
             return data;
@@ -66,6 +68,8 @@ namespace AdminIPBG.Rows
         public int FoldersCount { get; set; }
 
         public int TotalCount { get; set; }
+
+        public string QrCodeBase64 { get; set; }
         
     }
 }
