@@ -23,7 +23,7 @@
     <table style="margin-top: 50px">
         <tr>
             <td style="vertical-align: top">ОБЕКТ:</td>
-            <td style="width: 85%">"БЕНЗИНОСТАНЦИЯ, ГАЗСТАНЦИЯ, ТЪРГОВСКА СГРАДА С МАГАЗИН        И СНЕК-БАР" в УПИ 223.192 – производствено – складова, търговска и                обществено обслужваща  дейност – бензиностанция, газстанция, магазин с                кафе и офис, землище на с.Труд,  Община Марица, Област Пловдив</td>
+            <td style="width: 85%">@Model.Object</td>
         </tr>
         
         <tr style="height: 60px;">
@@ -40,24 +40,24 @@
         </tr>
         <tr style="height: 60px;">
             <td class="text-center" colspan="2">
-                Днес, 13.04.2017 г. получих 1 брой проект, х4 броя папки, общо 4 бр. папки
+                Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих 1 брой проект, х4 броя папки, общо 4 бр. папки
             </td>
         </tr>
     </table>
     
-    <div class="row" style="margin-top: 50px;">
+    <div class="row" style="margin-top: 80px; margin-right: 10px;">
         <p class="text-right">
             Предал: .......................................
             <br/>
-            /Иванка Шопова /
+           / @Model.UserGive /  
         </p>
     </div>
     
-    <div class="row" style="margin-top: 50px;">
+    <div class="row" style="margin-top: 50px;  margin-right: 10px;">
         <p class="text-right">
             Приел: .........................................
             <br/>
-            / арх. Примов /
+           / @Model.UserTake /  
 
         </p>
     </div>

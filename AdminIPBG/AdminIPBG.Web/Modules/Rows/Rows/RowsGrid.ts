@@ -25,6 +25,17 @@ namespace AdminIPBG.Rows {
                 maxWidth: 76
             });
 
+            columns.splice(columns.length, 0, {
+                field: 'InvoiceCode',
+                name: 'Код',
+                format: ctx => '<span><i class="fa fa-lock"></i> '
+                    + ctx.item.InvoiceCode
+                    + '</span>',
+                width: 176,
+                minWidth: 154,
+                maxWidth: 176
+            });
+
             return columns;
         }
 
@@ -65,10 +76,10 @@ namespace AdminIPBG.Rows {
                separator: true
            }));
 
-           buttons.push(Common.PdfExportHelper.createToolButton({
-               grid: this,
-               onViewSubmit: () => this.onViewSubmit()
-           }));
+           //buttons.push(Common.PdfExportHelper.createToolButton({
+           //    grid: this,
+           //    onViewSubmit: () => this.onViewSubmit()
+           //}));
 
            return buttons;
        }

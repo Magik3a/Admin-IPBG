@@ -26,6 +26,13 @@ namespace AdminIPBG.Rows
                 var row = connection.TryById<RowsRow>(this.RowId, r => r.SelectTableFields());
                 var rowForeign = connection.TryById<RowsRow>(this.RowId, r => r.SelectForeignFields(row));
                 data.Phase = rowForeign.PhaseName;
+                data.Part = rowForeign.PartName;
+                data.Client = rowForeign.ClientName;
+                data.Object = row.Object;
+                data.InvoiceDate = row.Date??DateTime.Now;
+                data.InvoiceCode = row.InvoiceCode;
+                data.UserGive = row.PersonDelivered;
+                data.UserTake = row.PersonTook;
             }
             return data;
         }
@@ -47,6 +54,8 @@ namespace AdminIPBG.Rows
         public string Client { get; set; }
 
         public DateTime InvoiceDate { get; set; }
+
+        public string InvoiceCode { get; set; }
 
         public string UserTake { get; set; }
 

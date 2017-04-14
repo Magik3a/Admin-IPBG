@@ -15,11 +15,13 @@ namespace AdminIPBG.Rows.Repositories
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            request.Entity.InvoiceCode = $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
 
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
+            request.Entity.InvoiceCode = $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
 

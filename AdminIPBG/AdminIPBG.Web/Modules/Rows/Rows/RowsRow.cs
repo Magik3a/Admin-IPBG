@@ -69,6 +69,16 @@ namespace AdminIPBG.Rows.Entities
         public partial class RowFields { public DateTimeField Date; }
         #endregion Date
 
+        #region MyRegion
+        [DisplayName("InvoiceCode"), QuickSearch]
+        public String InvoiceCode
+        {
+            get { return Fields.InvoiceCode[this]; }
+            set { Fields.InvoiceCode[this] = value; }
+        }
+        public partial class RowFields { public StringField InvoiceCode; }
+        
+        #endregion
         #region Part
         [DisplayName("Part"), NotNull, ForeignKey("[dbo].[Parts]", "PartId"), LeftJoin("jPart"), TextualField("PartName")]
         [LookupEditor(typeof(Rows.Entities.PartsRow), InplaceAdd = true)]
@@ -83,7 +93,27 @@ namespace AdminIPBG.Rows.Entities
         public partial class RowFields { public Int32Field PhaseId; }
         #endregion PhaseId
 
+        #region PersonDelivered
 
+        [DisplayName("Person Delivered"), MaxLength(200), QuickSearch]
+        public String PersonDelivered
+        {
+            get { return Fields.PersonDelivered[this]; }
+            set { Fields.PersonDelivered[this] = value; }
+        }
+        public partial class RowFields { public StringField PersonDelivered; }
+        #endregion
+
+        #region PersonTook
+
+        [DisplayName("Person Took"), MaxLength(200), QuickSearch]
+        public String PersonTook
+        {
+            get { return Fields.PersonTook[this]; }
+            set { Fields.PersonTook[this] = value; }
+        }
+        public partial class RowFields { public StringField PersonTook; }
+        #endregion
         #region Foreign Fields
 
         [DisplayName("Client Name"), Expression("jClient.[Name]")]

@@ -3775,6 +3775,16 @@ var AdminIPBG;
                     minWidth: 54,
                     maxWidth: 76
                 });
+                columns.splice(columns.length, 0, {
+                    field: 'InvoiceCode',
+                    name: 'Код',
+                    format: function (ctx) { return '<span><i class="fa fa-lock"></i> '
+                        + ctx.item.InvoiceCode
+                        + '</span>'; },
+                    width: 176,
+                    minWidth: 154,
+                    maxWidth: 176
+                });
                 return columns;
             };
             RowsGrid.prototype.onClick = function (e, row, cell) {
@@ -3807,10 +3817,10 @@ var AdminIPBG;
                     onViewSubmit: function () { return _this.onViewSubmit(); },
                     separator: true
                 }));
-                buttons.push(AdminIPBG.Common.PdfExportHelper.createToolButton({
-                    grid: this,
-                    onViewSubmit: function () { return _this.onViewSubmit(); }
-                }));
+                //buttons.push(Common.PdfExportHelper.createToolButton({
+                //    grid: this,
+                //    onViewSubmit: () => this.onViewSubmit()
+                //}));
                 return buttons;
             };
             return RowsGrid;

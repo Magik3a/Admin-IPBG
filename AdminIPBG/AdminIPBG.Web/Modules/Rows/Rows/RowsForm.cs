@@ -24,5 +24,9 @@ namespace AdminIPBG.Rows.Forms
         public DateTime Date { get; set; }
         public Int32 PartId { get; set; }
         public Int32 PhaseId { get; set; }
+
+        public String PersonDelivered { get; set; }
+
+        public String PersonTook { get; set; }
     }
 }
