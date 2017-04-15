@@ -35,7 +35,6 @@ namespace AdminIPBG.Rows {
                 minWidth: 154,
                 maxWidth: 176
             });
-
             return columns;
         }
 

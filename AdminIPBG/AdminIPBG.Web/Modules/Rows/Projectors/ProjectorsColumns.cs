@@ -15,7 +15,18 @@ namespace AdminIPBG.Rows.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Int32 ProjectorId { get; set; }
-        [EditLink]
+        [EditLink, ProjectorsFormatter]
         public String Name { get; set; }
+
+    }
+
+    public partial class ProjectorsFormatterAttribute : CustomFormatterAttribute
+    {
+        public const string Key = "AdminIPBG.Rows.ProjectorsFormatter";
+
+        public ProjectorsFormatterAttribute()
+            : base(Key)
+        {
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace AdminIPBG.Rows.Repositories
             var invoiceCode =
             $"{request.Entity.ClassifierNumber}/{request.Entity.Number}/{request.Entity.Date?.ToString("dd/MM/yyyy")}";
             request.Entity.InvoiceCode = invoiceCode;
-            request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
+            //request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
 
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
@@ -34,7 +34,7 @@ namespace AdminIPBG.Rows.Repositories
             request.Entity.InvoiceCode = invoiceCode;
 
             // TODO Check if changed 
-            request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
+            // request.Entity.QrCodeInvoice = QRCodeGeneratorExtend.GenerateQRCode(invoiceCode);
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
 

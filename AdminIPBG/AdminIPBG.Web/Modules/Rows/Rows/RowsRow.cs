@@ -119,16 +119,46 @@ namespace AdminIPBG.Rows.Entities
 
         #region QRCode
 
-        public Byte[] QrCodeInvoice
-        {
-            get { return Fields.QrCodeInvoice[this]; }
-            set { Fields.QrCodeInvoice[this] = value; }
-        }
+        //public Byte[] QrCodeInvoice
+        //{
+        //    get { return Fields.QrCodeInvoice[this]; }
+        //    set { Fields.QrCodeInvoice[this] = value; }
+        //}
 
-        public partial class RowFields { public ByteArrayField QrCodeInvoice; }
+        //public partial class RowFields { public ByteArrayField QrCodeInvoice; }
 
         #endregion
 
+        #region FoldersCount
+        [DisplayName("Folders Count"), MaxLength(50), QuickSearch]
+        public String FoldersCount
+        {
+            get { return Fields.FoldersCount[this]; }
+            set { Fields.FoldersCount[this] = value; }
+        }
+        public partial class RowFields { public StringField FoldersCount; }
+        #endregion
+
+        #region ProjectsCount
+        [DisplayName("Projects Count"), MaxLength(50), QuickSearch]
+        public String ProjectsCount
+        {
+            get { return Fields.ProjectsCount[this]; }
+            set { Fields.ProjectsCount[this] = value; }
+        }
+        public partial class RowFields { public StringField ProjectsCount; }
+
+        #endregion
+        #region FoldersTotalCount
+        [DisplayName("Folders Total Count"), MaxLength(50), QuickSearch]
+        public String FoldersTotalCount
+        {
+            get { return Fields.FoldersTotalCount[this]; }
+            set { Fields.FoldersTotalCount[this] = value; }
+        }
+        public partial class RowFields { public StringField FoldersTotalCount; }
+
+        #endregion
         #region Foreign Fields
 
         [DisplayName("Client Name"), Expression("jClient.[Name]")]

@@ -3662,6 +3662,24 @@ var AdminIPBG;
 (function (AdminIPBG) {
     var Rows;
     (function (Rows) {
+        var ProjectorsFormatter = (function () {
+            function ProjectorsFormatter() {
+            }
+            ProjectorsFormatter.prototype.format = function (ctx) {
+                return "<span class='employee-symbol male'>" + Q.htmlEncode(ctx.value) + '</span>';
+            };
+            return ProjectorsFormatter;
+        }());
+        ProjectorsFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], ProjectorsFormatter);
+        Rows.ProjectorsFormatter = ProjectorsFormatter;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
         var ProjectorsGrid = (function (_super) {
             __extends(ProjectorsGrid, _super);
             function ProjectorsGrid(container) {
@@ -3748,6 +3766,36 @@ var AdminIPBG;
             Serenity.Decorators.responsive()
         ], RowsEditorDialog);
         Rows.RowsEditorDialog = RowsEditorDialog;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowsFormatter = (function () {
+            function RowsFormatter() {
+            }
+            RowsFormatter.prototype.format = function (ctx) {
+                var text = Q.htmlEncode(ctx.value);
+                if (!this.SubObject) {
+                    return text;
+                }
+                return "<span class='employee-symbol male'>" + text + '</span>';
+            };
+            RowsFormatter.prototype.initializeColumn = function (column) {
+                column.referencedFields = column.referencedFields || [];
+                if (this.SubObject)
+                    column.referencedFields.push(this.SubObject);
+            };
+            return RowsFormatter;
+        }());
+        __decorate([
+            Serenity.Decorators.option()
+        ], RowsFormatter.prototype, "SubObject", void 0);
+        RowsFormatter = __decorate([
+            Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
+        ], RowsFormatter);
+        Rows.RowsFormatter = RowsFormatter;
     })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
 })(AdminIPBG || (AdminIPBG = {}));
 var AdminIPBG;

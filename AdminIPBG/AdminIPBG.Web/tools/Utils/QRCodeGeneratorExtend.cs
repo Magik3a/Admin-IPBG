@@ -13,7 +13,7 @@ namespace AdminIPBG.tools.Utils
             QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(input, QRCoder.QRCodeGenerator.ECCLevel.Q);
             BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
-            return qrCode.GetGraphic(20);
+            return qrCode.GetGraphic(10);
         }
     }
 }

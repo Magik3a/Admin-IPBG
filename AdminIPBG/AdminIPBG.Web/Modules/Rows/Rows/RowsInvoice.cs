@@ -1,4 +1,5 @@
 ﻿using AdminIPBG.Administration;
+using AdminIPBG.tools.Utils;
 
 namespace AdminIPBG.Rows
 {
@@ -32,9 +33,13 @@ namespace AdminIPBG.Rows
                 data.InvoiceDate = row.Date??DateTime.Now;
                 data.InvoiceCode = row.InvoiceCode;
                 data.UserGive = row.PersonDelivered;
-                data.QrCodeBase64 = Convert.ToBase64String(row.QrCodeInvoice, 0, row.QrCodeInvoice.Length);
+                var qrCode = QRCodeGeneratorExtend.GenerateQRCode(row.InvoiceCode);
+                data.QrCodeBase64 = Convert.ToBase64String(qrCode, 0, qrCode.Length);
 
                 data.UserTake = row.PersonTook;
+                data.ProjectCounts = row.ProjectsCount;
+                data.FoldersCount = row.FoldersCount;
+                data.TotalCount = row.FoldersTotalCount;
             }
             return data;
         }
@@ -63,11 +68,11 @@ namespace AdminIPBG.Rows
 
         public string UserGive { get; set; }
 
-        public int ProjectCounts { get; set; }
+        public string ProjectCounts { get; set; }
 
-        public int FoldersCount { get; set; }
+        public string FoldersCount { get; set; }
 
-        public int TotalCount { get; set; }
+        public string TotalCount { get; set; }
 
         public string QrCodeBase64 { get; set; }
         

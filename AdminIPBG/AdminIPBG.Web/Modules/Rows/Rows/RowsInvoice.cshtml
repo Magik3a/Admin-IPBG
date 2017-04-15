@@ -43,7 +43,8 @@
         </tr>
         <tr style="height: 60px;">
             <td class="text-center" colspan="2">
-                Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих 1 брой проект, х4 броя папки, общо 4 бр. папки
+                
+                Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих @Model.ProjectCounts брой проект, х@(Model.FoldersCount) броя папки, общо @Model.TotalCount бр. папки
             </td>
         </tr>
     </table>

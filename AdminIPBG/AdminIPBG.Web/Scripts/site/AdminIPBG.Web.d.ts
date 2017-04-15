@@ -1718,6 +1718,11 @@ declare namespace AdminIPBG.Rows {
     }
 }
 declare namespace AdminIPBG.Rows {
+    class ProjectorsFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace AdminIPBG.Rows {
     class ProjectorsGrid extends Serenity.EntityGrid<ProjectorsRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof ProjectorsDialog;
@@ -1751,6 +1756,13 @@ declare namespace AdminIPBG.Rows {
         protected getLocalTextPrefix(): string;
         protected getNameProperty(): string;
         protected form: RowsForm;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowsFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+        SubObject: string;
+        initializeColumn(column: Slick.Column): void;
     }
 }
 declare namespace AdminIPBG.Rows {

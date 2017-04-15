@@ -28,5 +28,12 @@ namespace AdminIPBG.Rows.Forms
         public String PersonDelivered { get; set; }
 
         public String PersonTook { get; set; }
+
+        public String FoldersCount { get; set; }
+
+        public String ProjectsCount { get; set; }
+
+        public String FoldersTotalCount { get; set; }
+
     }
 }

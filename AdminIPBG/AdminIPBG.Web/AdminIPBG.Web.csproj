@@ -1516,6 +1516,8 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
+    <TypeScriptCompile Include="Modules\Rows\Projectors\ProjectorsFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Rows\Rows\RowsFormatter.ts" />
     <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Default.ClientsRow.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Default.ClientsService.ts" />
