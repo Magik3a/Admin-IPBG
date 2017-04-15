@@ -1831,6 +1831,7 @@ declare namespace AdminIPBG.Rows {
         private form;
         constructor();
         protected getDialogTitle(): string;
+        protected getImageUploadEditorOptions(): Serenity.ImageUploadEditorOptions;
         protected getDialogButtons(): Serenity.DialogButton[];
     }
 }

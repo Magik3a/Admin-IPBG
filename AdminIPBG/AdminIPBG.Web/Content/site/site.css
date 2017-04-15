@@ -7895,3 +7895,6 @@ section.content > .s-DataGrid {
   width: 650px;
   height: 800px;
 }
+.s-RowsExcelImportDialog {
+  width: 700px !important;
+}

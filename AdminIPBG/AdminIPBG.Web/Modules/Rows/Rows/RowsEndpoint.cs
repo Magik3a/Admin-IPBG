@@ -206,7 +206,7 @@ namespace AdminIPBG.Rows.Endpoints
                     rowReaded.Object = Convert.ToString(worksheet.Cells[row, 5].Value ?? "");
                     rowReaded.SubObject = Convert.ToString(worksheet.Cells[row, 6].Value ?? "");
                     rowReaded.Date = DateTime.Parse(worksheet.Cells[row, 8].Value.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"));
-
+                    rowReaded.FoldersCount = Convert.ToString(worksheet.Cells[row, 11].Value ?? "");
 
                     if (rowReaded.RowId == null)
                     {

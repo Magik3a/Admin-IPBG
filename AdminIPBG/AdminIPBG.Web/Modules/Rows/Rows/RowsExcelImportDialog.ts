@@ -15,6 +15,12 @@
             return "Excel Import";
         }
 
+        protected getImageUploadEditorOptions(): Serenity.ImageUploadEditorOptions {
+            return {
+                minWidth: 800
+            }
+        }
+
         protected getDialogButtons(): Serenity.DialogButton[] {
             return [
                 {

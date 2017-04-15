@@ -4012,6 +4012,11 @@ var AdminIPBG;
             RowsExcelImportDialog.prototype.getDialogTitle = function () {
                 return "Excel Import";
             };
+            RowsExcelImportDialog.prototype.getImageUploadEditorOptions = function () {
+                return {
+                    minWidth: 800
+                };
+            };
             RowsExcelImportDialog.prototype.getDialogButtons = function () {
                 var _this = this;
                 return [
