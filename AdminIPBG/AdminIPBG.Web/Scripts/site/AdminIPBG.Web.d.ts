@@ -1140,6 +1140,31 @@ declare namespace AdminIPBG.Rows {
         }
     }
 }
+declare namespace AdminIPBG.Rows {
+    interface NoteRow {
+        NoteId?: number;
+        EntityType?: string;
+        EntityId?: number;
+        Text?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        InsertUserDisplayName?: string;
+    }
+    namespace NoteRow {
+        const idProperty = "NoteId";
+        const nameProperty = "EntityType";
+        const localTextPrefix = "Rows.Note";
+        namespace Fields {
+            const NoteId: string;
+            const EntityType: string;
+            const EntityId: string;
+            const Text: string;
+            const InsertUserId: string;
+            const InsertDate: string;
+            const InsertUserDisplayName: string;
+        }
+    }
+}
 declare namespace AdminIPBG {
     interface ScriptUserDefinition {
         Username?: string;
@@ -1620,6 +1645,34 @@ declare namespace AdminIPBG.Rows {
     }
 }
 declare namespace AdminIPBG.Rows {
+    class NoteDialog extends Serenity.TemplatedDialog<any> {
+        private textEditor;
+        constructor();
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        text: string;
+        okClick: () => void;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        private isDirty;
+        private items;
+        constructor(div: JQuery);
+        protected getTemplate(): string;
+        protected updateContent(): void;
+        protected addClick(): void;
+        protected editClick(e: any): void;
+        deleteClick(e: any): void;
+        value: NoteRow[];
+        getEditValue(prop: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, prop: Serenity.PropertyItem): void;
+        get_isDirty(): boolean;
+        set_isDirty(value: any): void;
+        onChange: () => void;
+    }
+}
+declare namespace AdminIPBG.Rows {
     class PartsDialog extends Serenity.EntityDialog<PartsRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1740,6 +1793,11 @@ declare namespace AdminIPBG.Rows {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: RowsForm;
+        private loadedState;
+        private rowsGrid;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace AdminIPBG.Rows {

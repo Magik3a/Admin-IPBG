@@ -1088,6 +1088,22 @@ var AdminIPBG;
 })(AdminIPBG || (AdminIPBG = {}));
 var AdminIPBG;
 (function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var NoteRow;
+        (function (NoteRow) {
+            NoteRow.idProperty = 'NoteId';
+            NoteRow.nameProperty = 'EntityType';
+            NoteRow.localTextPrefix = 'Rows.Note';
+            var Fields;
+            (function (Fields) {
+            })(Fields = NoteRow.Fields || (NoteRow.Fields = {}));
+            ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(function (x) { return Fields[x] = x; });
+        })(NoteRow = Rows.NoteRow || (Rows.NoteRow = {}));
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
     var Administration;
     (function (Administration) {
         var LanguageDialog = (function (_super) {
@@ -3408,6 +3424,190 @@ var AdminIPBG;
 (function (AdminIPBG) {
     var Rows;
     (function (Rows) {
+        var NoteDialog = (function (_super) {
+            __extends(NoteDialog, _super);
+            function NoteDialog() {
+                var _this = _super.call(this) || this;
+                _this.textEditor = new Serenity.HtmlNoteContentEditor(_this.byId('Text'));
+                return _this;
+            }
+            NoteDialog.prototype.getTemplate = function () {
+                return ("<form id='~_Form' class='s-Form'>" +
+                    "<textarea id='~_Text' class='required'></textarea>" +
+                    "</form>");
+            };
+            NoteDialog.prototype.getDialogOptions = function () {
+                var _this = this;
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.buttons = [{
+                        text: Q.text('Dialogs.OkButton'),
+                        click: function () {
+                            if (!_this.validateForm()) {
+                                return;
+                            }
+                            _this.okClick && _this.okClick();
+                        }
+                    }, {
+                        text: Q.text('Dialogs.CancelButton'),
+                        click: function () { return _this.dialogClose(); }
+                    }
+                ];
+                return opt;
+            };
+            Object.defineProperty(NoteDialog.prototype, "text", {
+                get: function () {
+                    return this.textEditor.value;
+                },
+                set: function (value) {
+                    this.textEditor.value = value;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            return NoteDialog;
+        }(Serenity.TemplatedDialog));
+        NoteDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], NoteDialog);
+        Rows.NoteDialog = NoteDialog;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var NotesEditor = (function (_super) {
+            __extends(NotesEditor, _super);
+            function NotesEditor(div) {
+                var _this = _super.call(this, div) || this;
+                new Serenity.Toolbar(_this.byId('Toolbar'), {
+                    buttons: [{
+                            title: 'Add Note',
+                            cssClass: 'add-button',
+                            onClick: function (e) {
+                                e.preventDefault();
+                                _this.addClick();
+                            }
+                        }]
+                });
+                return _this;
+            }
+            NotesEditor.prototype.getTemplate = function () {
+                return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
+            };
+            NotesEditor.prototype.updateContent = function () {
+                var _this = this;
+                var noteList = this.byId('NoteList');
+                noteList.children().remove();
+                if (this.items) {
+                    var index = 0;
+                    for (var t1 = 0; t1 < this.items.length; t1++) {
+                        var item = this.items[t1];
+                        var li = $('<li/>');
+                        $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
+                        $('<a/>').attr('href', '#').addClass('note-date')
+                            .text(item.InsertUserDisplayName + ' - ' +
+                            Q.formatDate(item.InsertDate, 'g'))
+                            .data('index', index).appendTo(li).click(function (e) { return _this.editClick(e); });
+                        $('<a/>').attr('href', '#').addClass('note-delete')
+                            .attr('title', 'delete note').data('index', index)
+                            .appendTo(li).click(function (e) { return _this.deleteClick(e); });
+                        li.appendTo(noteList);
+                        index++;
+                    }
+                }
+            };
+            NotesEditor.prototype.addClick = function () {
+                var _this = this;
+                var dlg = new Rows.NoteDialog();
+                dlg.dialogTitle = 'Add Note';
+                dlg.okClick = function () {
+                    var text = Q.trimToNull(dlg.text);
+                    if (text == null) {
+                        return;
+                    }
+                    _this.items = _this.items || [];
+                    Q.insert(_this.items, 0, {
+                        Text: text,
+                        InsertUserDisplayName: AdminIPBG.Authorization.userDefinition.DisplayName,
+                        InsertDate: Q.formatISODateTimeUTC(new Date())
+                    });
+                    _this.updateContent();
+                    dlg.dialogClose();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                };
+                dlg.dialogOpen();
+            };
+            NotesEditor.prototype.editClick = function (e) {
+                var _this = this;
+                e.preventDefault();
+                var index = $(e.target).data('index');
+                var old = this.items[index];
+                var dlg = new Rows.NoteDialog();
+                dlg.dialogTitle = 'Edit Note';
+                dlg.text = old.Text;
+                dlg.okClick = function () {
+                    var text = Q.trimToNull(dlg.text);
+                    if (!text) {
+                        return;
+                    }
+                    _this.items[index].Text = text;
+                    _this.updateContent();
+                    dlg.dialogClose();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                };
+                dlg.dialogOpen();
+            };
+            NotesEditor.prototype.deleteClick = function (e) {
+                var _this = this;
+                e.preventDefault();
+                var index = $(e.target).data('index');
+                Q.confirm('Delete this note?', function () {
+                    _this.items.splice(index, 1);
+                    _this.updateContent();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                });
+            };
+            Object.defineProperty(NotesEditor.prototype, "value", {
+                get: function () {
+                    return this.items;
+                },
+                set: function (value) {
+                    this.items = value || [];
+                    this.set_isDirty(false);
+                    this.updateContent();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            NotesEditor.prototype.getEditValue = function (prop, target) {
+                target[prop.name] = this.value;
+            };
+            NotesEditor.prototype.setEditValue = function (source, prop) {
+                this.value = source[prop.name] || [];
+            };
+            NotesEditor.prototype.get_isDirty = function () {
+                return this.isDirty;
+            };
+            NotesEditor.prototype.set_isDirty = function (value) {
+                this.isDirty = value;
+            };
+            return NotesEditor;
+        }(Serenity.TemplatedWidget));
+        NotesEditor = __decorate([
+            Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+            Serenity.Decorators.element("<div/>")
+        ], NotesEditor);
+        Rows.NotesEditor = NotesEditor;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
         var PartsDialog = (function (_super) {
             __extends(PartsDialog, _super);
             function PartsDialog() {
@@ -3705,15 +3905,29 @@ var AdminIPBG;
         var RowsDialog = (function (_super) {
             __extends(RowsDialog, _super);
             function RowsDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super.call(this) || this;
                 _this.form = new Rows.RowsForm(_this.idPrefix);
+                _this.byId('NoteList').closest('.field').hide().end().appendTo(_this.byId('TabNotes'));
                 return _this;
+                // DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
             }
             RowsDialog.prototype.getFormKey = function () { return Rows.RowsForm.formKey; };
             RowsDialog.prototype.getIdProperty = function () { return Rows.RowsRow.idProperty; };
             RowsDialog.prototype.getLocalTextPrefix = function () { return Rows.RowsRow.localTextPrefix; };
             RowsDialog.prototype.getNameProperty = function () { return Rows.RowsRow.nameProperty; };
             RowsDialog.prototype.getService = function () { return Rows.RowsService.baseUrl; };
+            RowsDialog.prototype.getSaveState = function () {
+                try {
+                    return $.toJSON(this.getSaveEntity());
+                }
+                catch (e) {
+                    return null;
+                }
+            };
+            RowsDialog.prototype.loadResponse = function (data) {
+                _super.prototype.loadResponse.call(this, data);
+                this.loadedState = this.getSaveState();
+            };
             return RowsDialog;
         }(Serenity.EntityDialog));
         RowsDialog = __decorate([

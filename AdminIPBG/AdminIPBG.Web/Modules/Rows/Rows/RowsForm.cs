@@ -25,6 +25,9 @@ namespace AdminIPBG.Rows.Forms
         public Int32 PartId { get; set; }
         public Int32 PhaseId { get; set; }
 
+        public List<object> NoteList { get; set; }
+
+        [Category("Invoice Details")]
         public String PersonDelivered { get; set; }
 
         public String PersonTook { get; set; }

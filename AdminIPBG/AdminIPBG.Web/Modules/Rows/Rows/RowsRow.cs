@@ -1,5 +1,7 @@
 ﻿
+using System.Collections.Generic;
 using System.Drawing.Printing;
+using AdminIPBG.Northwind;
 
 namespace AdminIPBG.Rows.Entities
 {
@@ -159,6 +161,14 @@ namespace AdminIPBG.Rows.Entities
         public partial class RowFields { public StringField FoldersTotalCount; }
 
         #endregion
+
+        [NotesEditor, NotMapped]
+        public List<NoteRow> NoteList
+        {
+            get { return Fields.NoteList[this]; }
+            set { Fields.NoteList[this] = value; }
+        }
+
         #region Foreign Fields
 
         [DisplayName("Client Name"), Expression("jClient.[Name]")]
@@ -202,11 +212,14 @@ namespace AdminIPBG.Rows.Entities
         }
         #endregion Constructor
 
+
         #region RowFields
         public static readonly RowFields Fields = new RowFields().Init();
 
         public partial class RowFields : RowFieldsBase
         {
+            public RowListField<NoteRow> NoteList;
+
             public RowFields()
             : base("[dbo].[Rows]")
             {

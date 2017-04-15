@@ -12,7 +12,7 @@ namespace AdminIPBG.Rows
 
     [Report("Rows.RowsInvoice")]
     [ReportDesign(MVC.Views.Rows.RowsInvoice)]
-    [RequiredPermission(PermissionKeys.Security)]
+    [ReadPermission("Rows:Rows:Read")]
     public class RowsInvoice : IReport, ICustomizeHtmlToPdf
     {
         public Int32 RowId { get; set; }

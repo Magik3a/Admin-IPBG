@@ -497,6 +497,9 @@
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\accordion-arrows.png" />
     <Content Include="Content\site\images\InvoiceHeaderPdf.png" />
+    <Content Include="Content\site\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -1107,6 +1110,7 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
     <Content Include="wkhtmltopdf-license.txt" />
+    <TypeScriptCompile Include="Imports\ServerTypings\RowsNoteRow.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\RolePermission\RolePermissionDialog.ts" />
@@ -1149,6 +1153,10 @@
     <Content Include="Content\toastr.less" />
     <Content Include="App_Data\texts\user.texts.bg-BG.json" />
     <Content Include="App_Data\texts\user.texts.invariant.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1206,6 +1214,7 @@
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Modules\Rows\Rows\RowsInvoice.cshtml" />
+    <Content Include="Modules\Rows\Rows\Rows.RowsDialog.Template.html" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -1516,6 +1525,8 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
+    <TypeScriptCompile Include="Modules\Rows\Note\NoteDialog.ts" />
+    <TypeScriptCompile Include="Modules\Rows\Note\NotesEditor.ts" />
     <TypeScriptCompile Include="Modules\Rows\Projectors\ProjectorsFormatter.ts" />
     <TypeScriptCompile Include="Modules\Rows\Rows\RowsFormatter.ts" />
     <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
@@ -1603,6 +1614,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\NotesEditorAttribute.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
@@ -1700,6 +1712,9 @@
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
     <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <Compile Include="Modules\Rows\Note\NoteRepository.cs" />
+    <Compile Include="Modules\Rows\Note\NoteRow.cs" />
+    <Compile Include="Modules\Rows\Note\NotesBehavior.cs" />
     <Compile Include="tools\Utils\QRCodeGeneratorExtend.cs" />
     <Content Include="Modules\Common\Reporting\ReportPage.cshtml" />
     <Compile Include="Modules\Common\Reporting\ReportTree.cs" />

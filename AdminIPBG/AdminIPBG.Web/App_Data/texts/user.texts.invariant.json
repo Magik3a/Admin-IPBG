@@ -1,4 +1,5 @@
 {
+  "Controls.PropertyGrid.DefaultCategory": "Properties",
   "Db.Rows.Rows.FoldersTotalCount": "Общ брой папки",
   "Navigation.Dashboard": "Dashboard",
   "Navigation.SiteTitle": "DocAdmin"
