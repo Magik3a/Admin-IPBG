@@ -1110,6 +1110,7 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
     <Content Include="wkhtmltopdf-license.txt" />
+    <TypeScriptCompile Include="Imports\ServerTypings\RowsExcelImportForm.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\RowsNoteRow.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
@@ -1528,6 +1529,7 @@
     <TypeScriptCompile Include="Modules\Rows\Note\NoteDialog.ts" />
     <TypeScriptCompile Include="Modules\Rows\Note\NotesEditor.ts" />
     <TypeScriptCompile Include="Modules\Rows\Projectors\ProjectorsFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Rows\Rows\RowsExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\Rows\Rows\RowsFormatter.ts" />
     <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Default.ClientsRow.ts" />
@@ -1715,6 +1717,7 @@
     <Compile Include="Modules\Rows\Note\NoteRepository.cs" />
     <Compile Include="Modules\Rows\Note\NoteRow.cs" />
     <Compile Include="Modules\Rows\Note\NotesBehavior.cs" />
+    <Compile Include="Modules\Rows\Rows\RowsExcelImportForm.cs" />
     <Compile Include="tools\Utils\QRCodeGeneratorExtend.cs" />
     <Content Include="Modules\Common\Reporting\ReportPage.cshtml" />
     <Compile Include="Modules\Common\Reporting\ReportTree.cs" />

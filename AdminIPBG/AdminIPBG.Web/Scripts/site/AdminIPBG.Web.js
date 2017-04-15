@@ -1079,11 +1079,27 @@ var AdminIPBG;
             var Methods;
             (function (Methods) {
             })(Methods = RowsService.Methods || (RowsService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List', 'ExcelImport'].forEach(function (x) {
                 RowsService[x] = function (r, s, o) { return Q.serviceRequest(RowsService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = RowsService.baseUrl + '/' + x;
             });
         })(RowsService = Rows.RowsService || (Rows.RowsService = {}));
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowsExcelImportForm = (function (_super) {
+            __extends(RowsExcelImportForm, _super);
+            function RowsExcelImportForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return RowsExcelImportForm;
+        }(Serenity.PrefixedContext));
+        RowsExcelImportForm.formKey = 'Rows.RowsExcelImport';
+        Rows.RowsExcelImportForm = RowsExcelImportForm;
+        [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(RowsExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
 })(AdminIPBG || (AdminIPBG = {}));
 var AdminIPBG;
@@ -3986,6 +4002,59 @@ var AdminIPBG;
 (function (AdminIPBG) {
     var Rows;
     (function (Rows) {
+        var RowsExcelImportDialog = (function (_super) {
+            __extends(RowsExcelImportDialog, _super);
+            function RowsExcelImportDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Rows.RowsExcelImportForm(_this.idPrefix);
+                return _this;
+            }
+            RowsExcelImportDialog.prototype.getDialogTitle = function () {
+                return "Excel Import";
+            };
+            RowsExcelImportDialog.prototype.getDialogButtons = function () {
+                var _this = this;
+                return [
+                    {
+                        text: 'Import',
+                        click: function () {
+                            if (!_this.validateBeforeSave())
+                                return;
+                            if (_this.form.FileName.value == null ||
+                                Q.isEmptyOrNull(_this.form.FileName.value.Filename)) {
+                                Q.notifyError("Please select a file!");
+                                return;
+                            }
+                            Rows.RowsService.ExcelImport({
+                                FileName: _this.form.FileName.value.Filename
+                            }, function (response) {
+                                Q.notifyInfo('Inserted: ' + (response.Inserted || 0) +
+                                    ', Updated: ' + (response.Updated || 0));
+                                if (response.ErrorList != null && response.ErrorList.length > 0) {
+                                    Q.notifyError(response.ErrorList.join(',\r\n '));
+                                }
+                                _this.dialogClose();
+                            });
+                        },
+                    },
+                    {
+                        text: 'Cancel',
+                        click: function () { return _this.dialogClose(); }
+                    }
+                ];
+            };
+            return RowsExcelImportDialog;
+        }(Serenity.PropertyDialog));
+        RowsExcelImportDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RowsExcelImportDialog);
+        Rows.RowsExcelImportDialog = RowsExcelImportDialog;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
         var RowsFormatter = (function () {
             function RowsFormatter() {
             }
@@ -4083,6 +4152,20 @@ var AdminIPBG;
                 //    grid: this,
                 //    onViewSubmit: () => this.onViewSubmit()
                 //}));
+                // add our import button
+                buttons.push({
+                    title: 'Import From Excel',
+                    cssClass: 'export-xlsx-button',
+                    onClick: function () {
+                        // open import dialog, let it handle rest
+                        var dialog = new Rows.RowsExcelImportDialog();
+                        dialog.element.on('dialogclose', function () {
+                            _this.refresh();
+                            dialog = null;
+                        });
+                        dialog.dialogOpen();
+                    }
+                });
                 return buttons;
             };
             return RowsGrid;

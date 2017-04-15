@@ -1131,13 +1131,23 @@ declare namespace AdminIPBG.Rows {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RowsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RowsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
             const Retrieve: string;
             const List: string;
+            const ExcelImport: string;
         }
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowsExcelImportForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface RowsExcelImportForm {
+        FileName: Serenity.ImageUploadEditor;
     }
 }
 declare namespace AdminIPBG.Rows {
@@ -1814,6 +1824,14 @@ declare namespace AdminIPBG.Rows {
         protected getLocalTextPrefix(): string;
         protected getNameProperty(): string;
         protected form: RowsForm;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowsExcelImportDialog extends Serenity.PropertyDialog<any, any> {
+        private form;
+        constructor();
+        protected getDialogTitle(): string;
+        protected getDialogButtons(): Serenity.DialogButton[];
     }
 }
 declare namespace AdminIPBG.Rows {
