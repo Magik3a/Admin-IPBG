@@ -4143,6 +4143,8 @@ var AdminIPBG;
                 var _this = this;
                 var buttons = _super.prototype.getButtons.call(this);
                 buttons.push(AdminIPBG.Common.ExcelExportHelper.createToolButton({
+                    title: 'Export to Excel',
+                    hint: 'Export to Excel',
                     grid: this,
                     service: Rows.RowsService.baseUrl + '/ListExcel',
                     onViewSubmit: function () { return _this.onViewSubmit(); },

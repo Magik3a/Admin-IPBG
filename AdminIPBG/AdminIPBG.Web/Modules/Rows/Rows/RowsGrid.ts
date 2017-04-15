@@ -69,11 +69,14 @@ namespace AdminIPBG.Rows {
            var buttons = super.getButtons();
 
            buttons.push(Common.ExcelExportHelper.createToolButton({
+               title: 'Export to Excel',
+               hint: 'Export to Excel',
                grid: this,
                service: RowsService.baseUrl + '/ListExcel',
                onViewSubmit: () => this.onViewSubmit(),
                separator: true
            }));
+
 
            //buttons.push(Common.PdfExportHelper.createToolButton({
            //    grid: this,

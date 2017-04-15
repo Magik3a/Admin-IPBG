@@ -54,6 +54,8 @@ namespace AdminIPBG.Rows.Endpoints
             using (var fs = new FileStream(UploadHelper.DbFilePath(request.FileName), FileMode.Open, FileAccess.Read))
                 ep.Load(fs);
 
+            var rowF = RowsRow.Fields;
+
             var proj = ProjectorsRow.Fields;
             var phas = PhasesRow.Fields;
             var clie = ClientsRow.Fields;
@@ -67,10 +69,21 @@ namespace AdminIPBG.Rows.Endpoints
             {
                 try
                 {
-                    var rowReaded = new RowsRow();
+                    var rowReaded = uow.Connection.TryFirst<RowsRow>(q => q
+                                         .Select(rowF.RowId)
+                                         .Where(
+                                           rowF.ClientName == Convert.ToString(worksheet.Cells[row, 2].Value ?? "")
+                                           && rowF.ClassifierNumber == Convert.ToInt16(worksheet.Cells[row, 3].Value ?? 0)
+                                           && rowF.Number == Convert.ToInt16(worksheet.Cells[row, 4].Value ?? 0)));
 
-                    rowReaded.TrackWithChecks = false;
-                  
+                    if (rowReaded == null)
+                        rowReaded = new RowsRow { };
+                    else
+                    {
+                        // avoid assignment errors
+                        rowReaded.TrackWithChecks = false;
+                    }
+
                     var projectorName = Convert.ToString(worksheet.Cells[row, 7].Value ?? "");
                     if (!string.IsNullOrWhiteSpace(projectorName))
                     {
@@ -96,7 +109,7 @@ namespace AdminIPBG.Rows.Endpoints
                     }
                     else
                     {
-                        response.ErrorList.Add("Error On Row " + row + "Projector Name can't be empty");
+                        response.ErrorList.Add("Error On Row " + row + ", Projector Name can't be empty");
                         continue;
                     }
 
@@ -125,7 +138,7 @@ namespace AdminIPBG.Rows.Endpoints
                     }
                     else
                     {
-                        response.ErrorList.Add("Error On Row " + row + "Phase Name can't be empty");
+                        response.ErrorList.Add("Error On Row " + row + ", Phase Name can't be empty");
                         continue;
                     }
 
@@ -153,7 +166,7 @@ namespace AdminIPBG.Rows.Endpoints
                     }
                     else
                     {
-                        response.ErrorList.Add("Error On Row " + row + "Client Name can't be empty");
+                        response.ErrorList.Add("Error On Row " + row + ", Client Name can't be empty");
                         continue;
                     }
 
@@ -181,15 +194,19 @@ namespace AdminIPBG.Rows.Endpoints
                     }
                     else
                     {
-                        response.ErrorList.Add("Error On Row " + row + "Part Name can't be empty");
+                        response.ErrorList.Add("Error On Row " + row + ", Part Name can't be empty");
                         continue;
                     }
+
+
+
 
                     rowReaded.ClassifierNumber = Convert.ToInt16(worksheet.Cells[row, 3].Value ?? 0);
                     rowReaded.Number = Convert.ToInt16(worksheet.Cells[row, 4].Value ?? 0);
                     rowReaded.Object = Convert.ToString(worksheet.Cells[row, 5].Value ?? "");
                     rowReaded.SubObject = Convert.ToString(worksheet.Cells[row, 6].Value ?? "");
                     rowReaded.Date = DateTime.Parse(worksheet.Cells[row, 8].Value.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"));
+
 
                     if (rowReaded.RowId == null)
                     {
