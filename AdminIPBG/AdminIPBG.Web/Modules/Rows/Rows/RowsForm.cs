@@ -1,4 +1,6 @@
 ﻿
+using AdminIPBG.Northwind;
+
 namespace AdminIPBG.Rows.Forms
 {
     using Serenity;
@@ -24,19 +26,20 @@ namespace AdminIPBG.Rows.Forms
         public DateTime Date { get; set; }
         public Int32 PartId { get; set; }
         public Int32 PhaseId { get; set; }
-
         public List<object> NoteList { get; set; }
 
         [Category("Invoice Details")]
         public String PersonDelivered { get; set; }
 
         public String PersonTook { get; set; }
+        [RowDetailsEditor]
+        public List<Entities.RowDetailsRow> DetailList { get; set; }
 
-        public String FoldersCount { get; set; }
+        //public String FoldersCount { get; set; }
 
-        public String ProjectsCount { get; set; }
+        //public String ProjectsCount { get; set; }
 
-        public String FoldersTotalCount { get; set; }
+        //public String FoldersTotalCount { get; set; }
 
     }
 }

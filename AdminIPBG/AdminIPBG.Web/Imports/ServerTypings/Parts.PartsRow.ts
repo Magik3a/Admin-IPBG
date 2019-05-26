@@ -10,6 +10,10 @@ namespace AdminIPBG.Parts {
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Parts.Parts';
 
+        export function getLookup(): Q.Lookup<PartsRow> {
+            return Q.getLookup<PartsRow>('Rows.Parts');
+        }
+
         export namespace Fields {
             export declare const PartId;
             export declare const Name;

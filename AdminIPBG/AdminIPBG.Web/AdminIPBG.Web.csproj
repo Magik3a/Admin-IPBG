@@ -1601,6 +1601,14 @@
     <TypeScriptCompile Include="Modules\Rows\Rows\RowsDialog.ts" />
     <TypeScriptCompile Include="Modules\Rows\Rows\RowsEditor.ts" />
     <TypeScriptCompile Include="Modules\Rows\Rows\RowsEditorDialog.ts" />
+    <Content Include="Modules\Rows\RowDetails\RowDetailsIndex.cshtml" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Rows.RowDetailsRow.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Rows.RowDetailsService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Rows.RowDetailsForm.ts" />
+    <TypeScriptCompile Include="Modules\Rows\RowDetails\RowDetailsGrid.ts" />
+    <TypeScriptCompile Include="Modules\Rows\RowDetails\RowDetailsDialog.ts" />
+    <TypeScriptCompile Include="Modules\Rows\RowDetails\RowDetailsEditor.ts" />
+    <TypeScriptCompile Include="Modules\Rows\RowDetails\RowDetailsEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1618,7 +1626,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\RowDetailsEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\NotesEditorAttribute.cs" />
+    <Compile Include="Migrations\Rows\DefaultDB_20190526_141500_RowDetails.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
@@ -1814,10 +1824,14 @@
     <Compile Include="Modules\Rows\Rows\RowsRepository.cs" />
     <Compile Include="Modules\Rows\Rows\RowsEndpoint.cs" />
     <Compile Include="Modules\Rows\Rows\RowsPage.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsRow.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsColumns.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsForm.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsRepository.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsEndpoint.cs" />
+    <Compile Include="Modules\Rows\RowDetails\RowDetailsPage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\Rows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

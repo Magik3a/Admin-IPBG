@@ -7461,18 +7461,6 @@ section.content > .s-DataGrid {
 .s-Default-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Default-RowsDialog > .size {
-  width: 650px;
-}
-.s-Default-RowsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
 .s-Rows-ClientsDialog > .size {
   width: 650px;
 }
@@ -7495,18 +7483,6 @@ section.content > .s-DataGrid {
   width: 650px;
 }
 .s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
   width: 150px;
 }
 .s-Rows-ProjectorsDialog > .size {
@@ -7533,10 +7509,28 @@ section.content > .s-DataGrid {
 .s-Rows-ClientsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
+.s-Rows-ClientsDialog > .size {
   width: 650px;
 }
-.s-Rows-RowsDialog .caption {
+.s-Rows-ClientsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PartsDialog > .size {
+  width: 650px;
+}
+.s-Rows-PartsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PhasesDialog > .size {
+  width: 650px;
+}
+.s-Rows-PhasesDialog .caption {
+  width: 150px;
+}
+.s-Rows-ProjectorsDialog > .size {
+  width: 650px;
+}
+.s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
 .s-Rows-ClientsDialog > .size {
@@ -7563,10 +7557,28 @@ section.content > .s-DataGrid {
 .s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
+.s-Rows-ClientsDialog > .size {
   width: 650px;
 }
-.s-Rows-RowsDialog .caption {
+.s-Rows-ClientsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PartsDialog > .size {
+  width: 650px;
+}
+.s-Rows-PartsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PhasesDialog > .size {
+  width: 650px;
+}
+.s-Rows-PhasesDialog .caption {
+  width: 150px;
+}
+.s-Rows-ProjectorsDialog > .size {
+  width: 650px;
+}
+.s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
 .s-Rows-ClientsDialog > .size {
@@ -7593,10 +7605,28 @@ section.content > .s-DataGrid {
 .s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
+.s-Rows-ClientsDialog > .size {
   width: 650px;
 }
-.s-Rows-RowsDialog .caption {
+.s-Rows-ClientsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PartsDialog > .size {
+  width: 650px;
+}
+.s-Rows-PartsDialog .caption {
+  width: 150px;
+}
+.s-Rows-PhasesDialog > .size {
+  width: 650px;
+}
+.s-Rows-PhasesDialog .caption {
+  width: 150px;
+}
+.s-Rows-ProjectorsDialog > .size {
+  width: 650px;
+}
+.s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
 .s-Rows-ClientsDialog > .size {
@@ -7623,12 +7653,6 @@ section.content > .s-DataGrid {
 .s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
 .s-Rows-ClientsDialog > .size {
   width: 650px;
 }
@@ -7653,12 +7677,6 @@ section.content > .s-DataGrid {
 .s-Rows-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
 .s-Rows-ClientsDialog > .size {
   width: 650px;
 }
@@ -7681,102 +7699,6 @@ section.content > .s-DataGrid {
   width: 650px;
 }
 .s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
-.s-Rows-ClientsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ClientsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PartsDialog > .size {
-  width: 650px;
-}
-.s-Rows-PartsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PhasesDialog > .size {
-  width: 650px;
-}
-.s-Rows-PhasesDialog .caption {
-  width: 150px;
-}
-.s-Rows-ProjectorsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
-.s-Rows-ClientsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ClientsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PartsDialog > .size {
-  width: 650px;
-}
-.s-Rows-PartsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PhasesDialog > .size {
-  width: 650px;
-}
-.s-Rows-PhasesDialog .caption {
-  width: 150px;
-}
-.s-Rows-ProjectorsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
-.s-Rows-ClientsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ClientsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PartsDialog > .size {
-  width: 650px;
-}
-.s-Rows-PartsDialog .caption {
-  width: 150px;
-}
-.s-Rows-PhasesDialog > .size {
-  width: 650px;
-}
-.s-Rows-PhasesDialog .caption {
-  width: 150px;
-}
-.s-Rows-ProjectorsDialog > .size {
-  width: 650px;
-}
-.s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
   width: 150px;
 }
 .s-Clients-ClientsDialog > .size {
@@ -7803,12 +7725,6 @@ section.content > .s-DataGrid {
 .s-Projectors-ProjectorsDialog .caption {
   width: 150px;
 }
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
-  width: 150px;
-}
 .s-Rows-ClientsDialog > .size {
   width: 650px;
 }
@@ -7831,12 +7747,6 @@ section.content > .s-DataGrid {
   width: 650px;
 }
 .s-Rows-ProjectorsDialog .caption {
-  width: 150px;
-}
-.s-Rows-RowsDialog > .size {
-  width: 650px;
-}
-.s-Rows-RowsDialog .caption {
   width: 150px;
 }
 .s-NotesEditor {
@@ -7892,9 +7802,21 @@ section.content > .s-DataGrid {
   padding-bottom: 10px;
 }
 .s-Rows-RowsDialog > .size {
-  width: 650px;
+  width: 750px;
   height: 800px;
 }
 .s-RowsExcelImportDialog {
   width: 700px !important;
+}
+.s-Rows-RowDetailsDialog > .size {
+  width: 550px;
+}
+.s-Rows-RowDetailsDialog .caption {
+  width: 150px;
+}
+.s-Rows-RowDetailsEditorDialog > .size {
+  width: 450px;
+}
+.s-Rows-RowDetailsEditorDialog .caption {
+  width: 150px;
 }

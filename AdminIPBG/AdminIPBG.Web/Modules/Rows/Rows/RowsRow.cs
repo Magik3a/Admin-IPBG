@@ -169,6 +169,13 @@ namespace AdminIPBG.Rows.Entities
             set { Fields.NoteList[this] = value; }
         }
 
+        [DisplayName("Details"), MasterDetailRelation(foreignKey: "RowId"), NotMapped]
+        public List<RowDetailsRow> DetailList
+        {
+            get { return Fields.DetailList[this]; }
+            set { Fields.DetailList[this] = value; }
+        }
+
         #region Foreign Fields
 
         [DisplayName("Client Name"), Expression("jClient.[Name]")]
@@ -219,6 +226,7 @@ namespace AdminIPBG.Rows.Entities
         public partial class RowFields : RowFieldsBase
         {
             public RowListField<NoteRow> NoteList;
+            public RowListField<RowDetailsRow> DetailList;
 
             public RowFields()
             : base("[dbo].[Rows]")

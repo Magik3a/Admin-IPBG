@@ -805,6 +805,7 @@ declare namespace AdminIPBG.Parts {
         const idProperty = "PartId";
         const nameProperty = "Name";
         const localTextPrefix = "Parts.Parts";
+        function getLookup(): Q.Lookup<PartsRow>;
         namespace Fields {
             const PartId: any;
             const Name: any;
@@ -1059,6 +1060,54 @@ declare namespace AdminIPBG.Rows {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProjectorsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProjectorsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowDetailsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface RowDetailsForm {
+        Description: Serenity.StringEditor;
+        Quantity: Serenity.IntegerEditor;
+        PartId: Serenity.IntegerEditor;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    interface RowDetailsRow {
+        RowDetailId?: number;
+        Description?: string;
+        Quantity?: number;
+        PartId?: number;
+        PartName?: string;
+    }
+    namespace RowDetailsRow {
+        const idProperty = "RowDetailId";
+        const nameProperty = "Description";
+        const localTextPrefix = "Rows.RowDetails";
+        namespace Fields {
+            const RowDetailId: any;
+            const Description: any;
+            const Quantity: any;
+            const PartId: any;
+            const PartName: string;
+        }
+    }
+}
+declare namespace AdminIPBG.Rows {
+    namespace RowDetailsService {
+        const baseUrl = "Rows/RowDetails";
+        function Create(request: Serenity.SaveRequest<RowDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<RowDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RowDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RowDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
@@ -1789,6 +1838,43 @@ declare namespace AdminIPBG.Rows {
     class ProjectorsGrid extends Serenity.EntityGrid<ProjectorsRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof ProjectorsDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowDetailsDialog extends Serenity.EntityDialog<RowDetailsRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RowDetailsForm;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowDetailsEditor extends Common.GridEditorBase<RowDetailsRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof RowDetailsEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        validateEntity(row: any, id: any): boolean;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowDetailsEditorDialog extends Common.GridEditorDialog<RowDetailsRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: RowDetailsForm;
+    }
+}
+declare namespace AdminIPBG.Rows {
+    class RowDetailsGrid extends Serenity.EntityGrid<RowDetailsRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof RowDetailsDialog;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;

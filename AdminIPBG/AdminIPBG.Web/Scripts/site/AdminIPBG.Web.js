@@ -719,6 +719,10 @@ var AdminIPBG;
             PartsRow.idProperty = 'PartId';
             PartsRow.nameProperty = 'Name';
             PartsRow.localTextPrefix = 'Parts.Parts';
+            function getLookup() {
+                return Q.getLookup('Rows.Parts');
+            }
+            PartsRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = PartsRow.Fields || (PartsRow.Fields = {}));
@@ -1035,6 +1039,55 @@ var AdminIPBG;
                 Methods[x] = ProjectorsService.baseUrl + '/' + x;
             });
         })(ProjectorsService = Rows.ProjectorsService || (Rows.ProjectorsService = {}));
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsForm = (function (_super) {
+            __extends(RowDetailsForm, _super);
+            function RowDetailsForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return RowDetailsForm;
+        }(Serenity.PrefixedContext));
+        RowDetailsForm.formKey = 'Rows.RowDetails';
+        Rows.RowDetailsForm = RowDetailsForm;
+        [['Description', function () { return Serenity.StringEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['PartId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(RowDetailsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsRow;
+        (function (RowDetailsRow) {
+            RowDetailsRow.idProperty = 'RowDetailId';
+            RowDetailsRow.nameProperty = 'Description';
+            RowDetailsRow.localTextPrefix = 'Rows.RowDetails';
+            var Fields;
+            (function (Fields) {
+            })(Fields = RowDetailsRow.Fields || (RowDetailsRow.Fields = {}));
+            ['RowDetailId', 'Description', 'Quantity', 'PartId', 'PartName'].forEach(function (x) { return Fields[x] = x; });
+        })(RowDetailsRow = Rows.RowDetailsRow || (Rows.RowDetailsRow = {}));
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsService;
+        (function (RowDetailsService) {
+            RowDetailsService.baseUrl = 'Rows/RowDetails';
+            var Methods;
+            (function (Methods) {
+            })(Methods = RowDetailsService.Methods || (RowDetailsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                RowDetailsService[x] = function (r, s, o) { return Q.serviceRequest(RowDetailsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = RowDetailsService.baseUrl + '/' + x;
+            });
+        })(RowDetailsService = Rows.RowDetailsService || (Rows.RowDetailsService = {}));
     })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
 })(AdminIPBG || (AdminIPBG = {}));
 var AdminIPBG;
@@ -3912,6 +3965,113 @@ var AdminIPBG;
             Serenity.Decorators.registerClass()
         ], ProjectorsGrid);
         Rows.ProjectorsGrid = ProjectorsGrid;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsDialog = (function (_super) {
+            __extends(RowDetailsDialog, _super);
+            function RowDetailsDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Rows.RowDetailsForm(_this.idPrefix);
+                return _this;
+            }
+            RowDetailsDialog.prototype.getFormKey = function () { return Rows.RowDetailsForm.formKey; };
+            RowDetailsDialog.prototype.getIdProperty = function () { return Rows.RowDetailsRow.idProperty; };
+            RowDetailsDialog.prototype.getLocalTextPrefix = function () { return Rows.RowDetailsRow.localTextPrefix; };
+            RowDetailsDialog.prototype.getNameProperty = function () { return Rows.RowDetailsRow.nameProperty; };
+            RowDetailsDialog.prototype.getService = function () { return Rows.RowDetailsService.baseUrl; };
+            return RowDetailsDialog;
+        }(Serenity.EntityDialog));
+        RowDetailsDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], RowDetailsDialog);
+        Rows.RowDetailsDialog = RowDetailsDialog;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsEditor = (function (_super) {
+            __extends(RowDetailsEditor, _super);
+            function RowDetailsEditor(container) {
+                return _super.call(this, container) || this;
+            }
+            RowDetailsEditor.prototype.getColumnsKey = function () { return 'Rows.RowDetails'; };
+            RowDetailsEditor.prototype.getDialogType = function () { return Rows.RowDetailsEditorDialog; };
+            RowDetailsEditor.prototype.getLocalTextPrefix = function () { return Rows.RowDetailsRow.localTextPrefix; };
+            RowDetailsEditor.prototype.validateEntity = function (row, id) {
+                row.PartId = Q.toId(row.PartId);
+                //var sameProduct = Q.tryFirst(this.view.getItems(), x => x.ProductId === row.ProductId);
+                //if (sameProduct && this.id(sameProduct) !== id) {
+                //    Q.alert('This product is already in order details!');
+                //    return false;
+                //} 
+                var productLookup = Q.getLookup('Rows.Parts').itemById[row.PartId];
+                row.PartName = productLookup.Name;
+                //row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0);
+                //if (row.Quadrature > 0)
+                //    row.LineTotal = row.LineTotal * row.Quadrature;
+                //row.LineTotal = row.LineTotal - (row.Discount || 0) + (row.AdditionalCosts || 0);
+                return true;
+            };
+            return RowDetailsEditor;
+        }(AdminIPBG.Common.GridEditorBase));
+        RowDetailsEditor = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RowDetailsEditor);
+        Rows.RowDetailsEditor = RowDetailsEditor;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsEditorDialog = (function (_super) {
+            __extends(RowDetailsEditorDialog, _super);
+            function RowDetailsEditorDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Rows.RowDetailsForm(_this.idPrefix);
+                return _this;
+            }
+            RowDetailsEditorDialog.prototype.getFormKey = function () { return Rows.RowDetailsForm.formKey; };
+            RowDetailsEditorDialog.prototype.getLocalTextPrefix = function () { return Rows.RowDetailsRow.localTextPrefix; };
+            RowDetailsEditorDialog.prototype.getNameProperty = function () { return Rows.RowDetailsRow.nameProperty; };
+            return RowDetailsEditorDialog;
+        }(AdminIPBG.Common.GridEditorDialog));
+        RowDetailsEditorDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], RowDetailsEditorDialog);
+        Rows.RowDetailsEditorDialog = RowDetailsEditorDialog;
+    })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
+})(AdminIPBG || (AdminIPBG = {}));
+var AdminIPBG;
+(function (AdminIPBG) {
+    var Rows;
+    (function (Rows) {
+        var RowDetailsGrid = (function (_super) {
+            __extends(RowDetailsGrid, _super);
+            function RowDetailsGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            RowDetailsGrid.prototype.getColumnsKey = function () { return 'Rows.RowDetails'; };
+            RowDetailsGrid.prototype.getDialogType = function () { return Rows.RowDetailsDialog; };
+            RowDetailsGrid.prototype.getIdProperty = function () { return Rows.RowDetailsRow.idProperty; };
+            RowDetailsGrid.prototype.getLocalTextPrefix = function () { return Rows.RowDetailsRow.localTextPrefix; };
+            RowDetailsGrid.prototype.getService = function () { return Rows.RowDetailsService.baseUrl; };
+            return RowDetailsGrid;
+        }(Serenity.EntityGrid));
+        RowDetailsGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RowDetailsGrid);
+        Rows.RowDetailsGrid = RowDetailsGrid;
     })(Rows = AdminIPBG.Rows || (AdminIPBG.Rows = {}));
 })(AdminIPBG || (AdminIPBG = {}));
 var AdminIPBG;
