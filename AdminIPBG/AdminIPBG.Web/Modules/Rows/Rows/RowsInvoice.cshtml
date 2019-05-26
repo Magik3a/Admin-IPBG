@@ -4,65 +4,68 @@
 {
     Layout = MVC.Views.Shared._LayoutNoNavigation;
 }
-
-<section class="invoice">
+<style>
+    .invoice {
+        font-family: Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; 
+    }
+</style>
+<section class="invoice" style="padding-top: 20px">
     <div class="row">
-        <div class="col-md-2" style="width: 20%; display: inline-block">
-            <img src="data:image/png;base64,@Model.QrCodeBase64" class="img img-responsive"/>
+        <div class="col-md-2" style="width: 15%; display: inline-block; margin-bottom: 20px">
+            <img src="data:image/png;base64,@Model.QrCodeBase64" class="img img-responsive" />
         </div>
-        <div class="col-md-10" style="width: 70%; display: inline-block">
-            <img src="~/Content/site/images/InvoiceHeaderPdf.png" class="img img-responsive"/>
+        <div class="col-md-10" style="width: 84%; display: inline-block;">
+            <img src="~/Content/site/images/InvoiceHeaderPdf.png" class="img img-responsive" />
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 50px">
         <div class="col-md-12 text-center">
             <h2>
                 ПРИЕМО - ПРЕДАВАТЕЛЕН
-                <br/>
+                <br />
                 ПРОТОКОЛ
             </h2>
         </div>
     </div>
-    <table style="margin-top: 50px">
+    <table style="margin-top: 50px; font-weight: bold;">
         <tr>
             <td style="vertical-align: top">ОБЕКТ:</td>
-            <td style="width: 85%">@Model.Object</td>
+            <td style="width: 85%; color: darkblue !important" >@Model.Object</td>
         </tr>
-        
+
         <tr style="height: 60px;">
             <td style="">ЧАСТ:</td>
-            <td>@Model.Part</td>
+            <td style="color: red !important">@Model.Part</td>
         </tr>
         <tr style="height: 60px;">
             <td style="">ФАЗА:</td>
-            <td>@Model.Phase</td>
+            <td  style="color: red !important">@Model.Phase</td>
         </tr>
         <tr style="height: 60px;">
-            <td style="">ВЪЗЛОЖИТЕЛ:</td>
+            <td style="padding-right: 10px">ВЪЗЛОЖИТЕЛ: </td>
             <td>@Model.Client</td>
         </tr>
         <tr style="height: 60px;">
             <td class="text-center" colspan="2">
-                
+
                 Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих @Model.ProjectCounts брой проект, х@(Model.FoldersCount) броя папки, общо @Model.TotalCount бр. папки
             </td>
         </tr>
     </table>
-    
-    <div class="row" style="margin-top: 80px; margin-right: 10px;">
-        <p class="text-right">
-            Предал: .......................................
-            <br/>
-           / @Model.UserGive /  
-        </p>
-    </div>
-    
-    <div class="row" style="margin-top: 50px;  margin-right: 10px;">
-        <p class="text-right">
-            Приел: .........................................
-            <br/>
-           / @Model.UserTake /  
+    <table style="width: 100%; margin-top: 80px; margin-right: 10px;">
+        <tr>
+            <td class="text-center">
 
-        </p>
-    </div>
+                Предал: ......................................
+                <br />
+                / @Model.UserGive /
+            </td>
+            <td class="text-center">
+                Приел: .........................................
+                <br />
+                / @Model.UserTake /
+
+            </td>
+        </tr>
+    </table>
 </section>

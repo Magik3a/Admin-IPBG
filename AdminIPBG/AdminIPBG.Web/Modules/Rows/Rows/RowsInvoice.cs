@@ -1,4 +1,5 @@
-﻿using AdminIPBG.Administration;
+﻿using System.IO;
+using AdminIPBG.Administration;
 using AdminIPBG.tools.Utils;
 
 namespace AdminIPBG.Rows
@@ -47,7 +48,22 @@ namespace AdminIPBG.Rows
         public void Customize(IHtmlToPdfOptions options)
         {
             // you may customize HTML to PDF converter (WKHTML) parameters here, e.g. 
-            // options.MarginsAll = "2cm";
+             options.MarginLeft = "2cm";
+             options.MarginTop = "1cm";
+
+             // Get path of App_Data\Reporting, that is the folder where I have header.html and footer.html files
+             string PhisicalPath = Path.Combine(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath,
+                 @"App_Data\Reporting\");
+
+             //options.CustomArgs.Add("--header-html");
+             //options.CustomArgs.Add(PhisicalPath + "header.html");
+
+             options.CustomArgs.Add("--footer-html");
+             options.CustomArgs.Add(PhisicalPath + "FooterInvoice.html");
+
+             options.CustomArgs.Add("--disable-smart-shrinking");
+
+
         }
     }
 
