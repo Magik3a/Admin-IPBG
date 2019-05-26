@@ -1,6 +1,4 @@
 ﻿
-using AdminIPBG.Northwind;
-
 namespace AdminIPBG.Rows.Forms
 {
     using Serenity;

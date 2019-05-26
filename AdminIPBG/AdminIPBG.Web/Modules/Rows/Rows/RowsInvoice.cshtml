@@ -46,25 +46,87 @@
             <td>@Model.Client</td>
         </tr>
         <tr style="height: 60px;">
-            <td class="text-center" colspan="2">
+            <td class="" colspan="2">
 
-                Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих @Model.ProjectCounts брой проект, х@(Model.FoldersCount) броя папки, общо @Model.TotalCount бр. папки
+                Днес, @Model.InvoiceDate.ToString("dd.MM.yyyy г.") получих:  @*@Model.ProjectCounts брой проект, х@(Model.FoldersCount) броя папки, общо @Model.TotalCount бр. папки*@
             </td>
         </tr>
     </table>
-    <table style="width: 100%; margin-top: 80px; margin-right: 10px;">
+    
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr class=" text-center">
+            <td style="width: 10%">
+                Номер
+            </td>
+            <td>
+                Описание
+            </td>
+            <td>
+                Част
+            </td>
+            <td style="width: 10%">
+                Брой
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            var counterDetail = 1;
+            var totalQuantity = 0;
+        }
+        @foreach (var detail in Model.Details)
+        {
+            <tr class=" text-center">
+                <td>
+                    @counterDetail
+                    @{ counterDetail++; }
+                </td>
+                <td>
+                    @detail.Description
+                </td>
+                <td>
+                    @detail.PartName
+                </td>
+                <td>
+                    @detail.Quantity
+                    @{ totalQuantity += detail.Quantity; }
+                </td>
+            </tr>
+        }
+        
+        <tr class="text-right">
+            <td colspan="4"> Общо: @totalQuantity</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table style="width: 100%; margin-top: 50px; margin-right: 10px;">
         <tr>
             <td class="text-center">
 
                 Предал: ......................................
                 <br />
-                / @Model.UserGive /
+                @if (!string.IsNullOrEmpty(Model.UserGive))
+                {
+                     <span>/ @Model.UserGive /</span>
+                }
+                else
+                {
+            <span>/ ........................................... /</span>
+                }
             </td>
             <td class="text-center">
                 Приел: .........................................
                 <br />
-                / @Model.UserTake /
-
+                @if (!string.IsNullOrEmpty(Model.UserTake))
+                {
+                    <span>/ @Model.UserTake /</span>
+                }
+                else
+                {
+                    <span>/ ........................................... /</span>
+                }
             </td>
         </tr>
     </table>

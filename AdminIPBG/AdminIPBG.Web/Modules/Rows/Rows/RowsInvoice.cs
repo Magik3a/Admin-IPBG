@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using AdminIPBG.Administration;
+using AdminIPBG.Rows.Repositories;
 using AdminIPBG.tools.Utils;
+using Serenity.Services;
 
 namespace AdminIPBG.Rows
 {
@@ -41,6 +43,21 @@ namespace AdminIPBG.Rows
                 data.ProjectCounts = row.ProjectsCount;
                 data.FoldersCount = row.FoldersCount;
                 data.TotalCount = row.FoldersTotalCount;
+
+               // var details = connection.List<RowDetailsRow>(s => s.Select("*").Where(new Criteria(RowDetailsRow.Fields.RowId.Name) == this.RowId));
+
+                var details = new RowDetailsRepository().List(connection,
+                    new ListRequest {Criteria = new Criteria(RowDetailsRow.Fields.RowId.Name) == this.RowId}).Entities;
+                foreach (var rowDetailsRow in details)
+                {
+                    data.Details.Add(new RowsInvoiceData.RowDetails
+                    {
+                        Description = rowDetailsRow.Description,
+                        PartName = rowDetailsRow.PartName,
+                        Quantity = rowDetailsRow.Quantity??0
+                    });
+                }
+
             }
             return data;
         }
@@ -69,6 +86,10 @@ namespace AdminIPBG.Rows
 
     public class RowsInvoiceData
     {
+        public RowsInvoiceData()
+        {
+            Details = new List<RowDetails>();
+        }
         public string Object { get; set; }
 
         public string Part { get; set; }
@@ -91,6 +112,15 @@ namespace AdminIPBG.Rows
         public string TotalCount { get; set; }
 
         public string QrCodeBase64 { get; set; }
-        
+
+        public List<RowDetails> Details { get; set; }
+
+        public class RowDetails
+        {
+            public Int32 RowDetailId { get; set; }
+            public String Description { get; set; }
+            public String PartName { get; set; }
+            public Int32 Quantity { get; set; }
+        }
     }
 }

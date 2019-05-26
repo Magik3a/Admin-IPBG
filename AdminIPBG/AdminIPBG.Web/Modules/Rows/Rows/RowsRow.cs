@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using System.Drawing.Printing;
-using AdminIPBG.Northwind;
 
 namespace AdminIPBG.Rows.Entities
 {

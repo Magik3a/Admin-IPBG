@@ -17,7 +17,7 @@ namespace AdminIPBG.Rows.Columns
         public Int32 RowDetailId { get; set; }
         [EditLink]
         public String Description { get; set; }
-        public Int32 PartName { get; set; }
+        public String PartName { get; set; }
         public Int32 Quantity { get; set; }
     }
 }
